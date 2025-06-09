@@ -1,16 +1,29 @@
 # mobilemoney
 
-A new Flutter project.
+A mobile money app built using flutter.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+this app will be used to access your account easily using just you mobile and internet
+here are some of the UI screenshots for light mode 
+you can check the app for dark mode UI
 
-A few resources to get you started if this is your first Flutter project:
+## 📱 Screenshots
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Home Screen
+![Home Screen](screenshots/home.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Add Money Screen
+![Add Money Screen](screenshots/addMoney.png)
+
+### send to bank Screen
+![send to bank Screen](screenshots/sendToBank.png)
+
+### recieve money Screen
+![recieve money Screen](screenshots/recievemoney.png)
+
+### confirmation Screen
+![confirmation Screen](screenshots/confirmation.png)
+
+### successfull Screen
+![successfull Screen](screenshots/successfull.png)
