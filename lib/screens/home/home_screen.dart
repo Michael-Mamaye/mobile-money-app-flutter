@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobilemoney/screens/add_money/add_money_screen.dart';
 import 'package:mobilemoney/screens/bank_transfer/bank_form_screen.dart';
+import 'package:mobilemoney/screens/recent_transfers_screen.dart';
 import 'package:mobilemoney/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -89,9 +90,12 @@ class HomeScreen extends StatelessWidget {
                       'Transactions',
                       Icons.history,
                       theme.colorScheme.tertiary,
-                      () {
-                        // TODO: Implement transactions screen
-                      },
+                      () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RecentTransfersScreen(),
+                        ),
+                      ),
                     ),
                     _buildActionCard(
                       context,

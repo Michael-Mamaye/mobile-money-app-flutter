@@ -4,7 +4,7 @@ A mobile money app built using flutter.
 
 ## Getting Started
 
-this app will be used to access your account easily using just you mobile and internet
+This app will be used to access your account easily using just you mobile and internet
 here are some of the UI screenshots for light mode 
 you can check the app for dark mode UI
 
