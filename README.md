@@ -29,7 +29,7 @@ you can check the app for dark mode UI
 ![successfull Screen](screenshots/successfull.png)
 
 ### Transaction List Screen
-![Transaction List Screen](screenshots/transactionList.jpg)
+![Transaction List Screen](screenshots/transactionsList.jpg)
 
 ### Transaction Detail Screen
 ![Transaction Detail Screen](screenshots/transactionDetail.jpg)
