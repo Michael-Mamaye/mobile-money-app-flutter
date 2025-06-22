@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../services/database_service.dart';
+import '../../models/transfer.dart';
 
 class ConfirmationScreen extends StatefulWidget {
   final String bankName;
@@ -20,7 +22,9 @@ class ConfirmationScreen extends StatefulWidget {
 
 class _ConfirmationScreenState extends State<ConfirmationScreen> {
   final _pinController = TextEditingController();
+  final _databaseService = DatabaseService();
   bool _showSuccess = false;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -28,11 +32,39 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
     super.dispose();
   }
 
-  void _submitPin() {
+  Future<void> _submitPin() async {
     if (_pinController.text.length == 4) {
-      setState(() {
-        _showSuccess = true;
-      });
+      setState(() => _isLoading = true);
+      
+      try {
+        // Create a new transfer
+        final transfer = Transfer(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          recipientName: '${widget.bankName} - ${widget.accountNumber}',
+          amount: widget.amount,
+          timestamp: DateTime.now(),
+          status: TransferStatus.success,
+        );
+
+        // Save the transfer to database
+        await _databaseService.addTransfer(transfer);
+
+        setState(() {
+          _showSuccess = true;
+          _isLoading = false;
+        });
+      } catch (e) {
+        setState(() => _isLoading = false);
+        // Show error message
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Failed to process transaction. Please try again.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      }
     }
   }
 
@@ -126,8 +158,17 @@ class _ConfirmationScreenState extends State<ConfirmationScreen> {
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: _submitPin,
-                    child: const Text('Done'),
+                    onPressed: _isLoading ? null : _submitPin,
+                    child: _isLoading
+                        ? const SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            ),
+                          )
+                        : const Text('Done'),
                   ),
                 ),
               ],
